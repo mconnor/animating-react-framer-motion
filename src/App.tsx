@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardGrid, Container, Header } from './Elements';
@@ -8,8 +9,14 @@ import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
 
-function App() {
-    const [ value, setValue ] = useState(0)
+
+type Props = { title:string};
+type State = {
+    value: number,
+  };
+
+function App({ title }:Props) {
+    const [ value, setValue ] = useState<string>()
 	return (
 		<motion.div
 			initial={{ opacity: 0 }}
