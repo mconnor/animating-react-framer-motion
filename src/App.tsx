@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence  } from 'framer-motion';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
@@ -29,8 +29,14 @@ function App({ title }: Props) {
                 <h1>Header</h1>
             </Header>
             <Container>
-                <motion.h2
-                    animate={{ opacity: isToggled, x: parseInt(value) }}>Super Cool</motion.h2>
+                <AnimatePresence>
+                {isToggled && (<motion.h2
+                    initial={{ opacity: 0}}
+                    animate={{ opacity: isToggled, x: parseInt(value) }}
+                    exit={{ opacity: 0 }}
+                >
+                    Super Cool</motion.h2>)}
+                    </AnimatePresence>
                 <input type="range" min="-100" max="100"
                     value={value}
                     onChange={(e) => setValue(e.target.value)} />
