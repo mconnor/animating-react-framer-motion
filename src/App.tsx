@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { motion, AnimatePresence  } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal/Modal';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
@@ -19,7 +19,7 @@ type State = {
 function App({ title }: Props) {
     const [value, setValue] = useState<string>('0')
     const [isModal, setModal] = useState<boolean>(false)
-    const [isToggled, setToggle] = useState(1)
+
     return (
         <motion.div
             initial={{ opacity: 0 }}
@@ -30,30 +30,23 @@ function App({ title }: Props) {
                 <Menu />
                 <h1>Header</h1>
             </Header>
-          
+
             <Container>
-                <AnimatePresence>
-
-                {isModal &&  <Modal closeMe={() => setModal(false)} />}
-
-                
-                {isToggled && (<motion.h2
-                    initial={{ opacity: 0}}
-                    animate={{ opacity: isToggled, x: parseInt(value) }}
-                    exit={{ opacity: 0 }}
+                <Modal isModalToggled={isModal}
+                        closeMe={() => setModal(false)}
                 >
-                    Super Cool</motion.h2>)}
-                    </AnimatePresence>
+                            <Card style={{ background: 'var(--purp)' }}>
+                                <h3>Some card</h3>
+                                <img src={purp} />
+                            </Card>
+                </Modal>
+                <h2>cool</h2>
                 <input type="range" min="-100" max="100"
                     value={value}
                     onChange={(e) => setValue(e.target.value)} />
-                <button onClick={() => setToggle(prevValue => prevValue ? 0 : 1)}>toggle</button>
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
-                    <Card style={{ background: 'var(--purp)' }}>
-                        <h3>Some card</h3>
-                        <img src={purp} />
-                    </Card>
+                    
                     <Card style={{ background: 'var(--blue)' }}>
                         <h3>Some card</h3>
                         <img src={blue} />

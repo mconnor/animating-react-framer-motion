@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion, AnimatePresence } from 'framer-motion';
 import CloseBtn from './CloseBtn'
 
 
@@ -15,29 +16,38 @@ const ModalDiv = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background-color:white;
-    border: 1px black solid;
-    border-radius: 8px;
-    padding-top: 20px;
-    padding-left: 20px;
 `;
 
-const Headline = styled.h1`
-    border: 1px black solid;
-    margin-top:0;
-`;
 
 
 type Props = {
     closeMe: () => void;
+    isModalToggled: boolean;
+    children?: any;
 }
 
-const Modal = ({ closeMe }: Props) => {
+const Modal = ({ isModalToggled, closeMe, children }: Props) => {
     return (
-        <ModalDiv>
-            <CloseBtn close={closeMe} />
-            <Headline>Modal</Headline>
-        </ModalDiv>
+        <AnimatePresence>
+           {isModalToggled && 
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                >
+                    <motion.div
+                        initial={{ y: 50 }}
+                        animate={{ y: 0 }}
+                        exit={{ y: 30 }}
+                    >
+                        <ModalDiv>
+                            <CloseBtn close={closeMe} />
+                            {children}
+                        </ModalDiv>
+                    </motion.div>
+                </motion.div>
+            }
+        </AnimatePresence>
 
     )
 }
