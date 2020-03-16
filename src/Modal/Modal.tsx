@@ -11,7 +11,7 @@ const ModalDiv = styled.div`
     width: 95%;
     max-width: 500px;
 
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -29,22 +29,24 @@ type Props = {
 const Modal = ({ isModalToggled, closeMe, children }: Props) => {
     return (
         <AnimatePresence>
-           {isModalToggled && 
+            {isModalToggled &&
+
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                 >
-                    <motion.div
-                        initial={{ y: 50 }}
-                        animate={{ y: 0 }}
-                        exit={{ y: 30 }}
-                    >
-                        <ModalDiv>
+                    <ModalDiv>
+                        <motion.div
+                            initial={{ y: 50 }}
+                            animate={{ y: 0 }}
+                        >
+
                             <CloseBtn close={closeMe} />
                             {children}
-                        </ModalDiv>
-                    </motion.div>
+
+                        </motion.div>
+                    </ModalDiv>
                 </motion.div>
             }
         </AnimatePresence>
