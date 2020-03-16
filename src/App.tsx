@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Modal from './Modal/Modal';
+import Modal from './components/Modal/Modal';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
