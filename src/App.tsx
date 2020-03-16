@@ -30,9 +30,13 @@ function App({ title }: Props) {
                 <Menu />
                 <h1>Header</h1>
             </Header>
-           {isModal &&  <Modal closeMe={() => setModal(false)} />}
+          
             <Container>
                 <AnimatePresence>
+
+                {isModal &&  <Modal closeMe={() => setModal(false)} />}
+
+                
                 {isToggled && (<motion.h2
                     initial={{ opacity: 0}}
                     animate={{ opacity: isToggled, x: parseInt(value) }}
