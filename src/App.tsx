@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { motion, AnimatePresence  } from 'framer-motion';
+import Modal from './Modal/Modal';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
@@ -17,6 +18,7 @@ type State = {
 
 function App({ title }: Props) {
     const [value, setValue] = useState<string>('0')
+    const [isModal, setModal] = useState<boolean>(false)
     const [isToggled, setToggle] = useState(1)
     return (
         <motion.div
@@ -28,6 +30,7 @@ function App({ title }: Props) {
                 <Menu />
                 <h1>Header</h1>
             </Header>
+           {isModal &&  <Modal closeMe={() => setModal(false)} />}
             <Container>
                 <AnimatePresence>
                 {isToggled && (<motion.h2
@@ -41,6 +44,7 @@ function App({ title }: Props) {
                     value={value}
                     onChange={(e) => setValue(e.target.value)} />
                 <button onClick={() => setToggle(prevValue => prevValue ? 0 : 1)}>toggle</button>
+                <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
                     <Card style={{ background: 'var(--purp)' }}>
                         <h3>Some card</h3>
