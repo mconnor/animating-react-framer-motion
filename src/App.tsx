@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Modal from './components/Modal/Modal';
+import Accordian from './components/accordian/Accordian';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
@@ -32,6 +33,7 @@ function App({ title }: Props) {
             </Header>
 
             <Container>
+                <Accordian />
                 <Modal isModalToggled={isModal}
                         closeMe={() => setModal(false)}
                 >
