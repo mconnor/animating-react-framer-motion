@@ -3,17 +3,10 @@ import styled from 'styled-components'
 import styles from './Accordian.module.css'
 import { motion, AnimatePresence } from 'framer-motion';
 
-const MainDiv = styled.div`
-    background-color: gray;
-`;
-
-const Copy = styled.div`
-    background-color: white;s
-`;
-
-const Headline = styled.div`
-    background-color: gray;
-`;
+const variants = {
+    open: { opacity: 1, height: "auto"},
+    closed: { opacity: 0, height: 0}
+}
 
 
 const Accordian = () => {
@@ -25,10 +18,11 @@ const Accordian = () => {
             <AnimatePresence>
                 {isOpen &&
                     <motion.div
+                        variants = {variants}
                         className={styles.hidden}
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
                     >
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus,
