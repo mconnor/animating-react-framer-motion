@@ -10,6 +10,7 @@ import blue from './blue.png';
 import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
+import Nav from './components/Nav';
 
 
 type Props = { title: string };
@@ -20,15 +21,18 @@ type State = {
 function App({ title }: Props) {
     const [value, setValue] = useState<string>('0')
     const [isModal, setModal] = useState<boolean>(false)
+    const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
 
     return (
         <motion.div
 
-            animate={{ opacity: [0,1,0,1] }}
-            transition={{ duration: 5, time: [0, .2, 1] }}
+            animate={{ opacity: [0,1] }}
+            transition={{ duration: .5, time: [0, 1] }}
         >
             <Header>
-                <Menu />
+                
+                <Menu onClick={()=> setIsNavOpen(true)} />
+                <Nav isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
                 <h1>Header</h1>
             </Header>
 

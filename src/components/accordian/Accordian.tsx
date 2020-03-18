@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
 import styles from './Accordian.module.css'
 import { motion, AnimatePresence } from 'framer-motion';
 
