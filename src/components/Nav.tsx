@@ -14,13 +14,24 @@ const variants = {
 
 }
 
+
+const ulVariants = {
+    open: {
+        scale: 1.05,
+        transition: {
+            staggerChildren: 0.3,
+            delayChildren: .2,
+            staggerDirection: -1,
+            when: "afterChildren"
+        }
+    },
+    closed: { scale: 1 },
+}
+
 const liVariants = {
     open: {
         y: 0,
         opacity: 1,
-        transition: {
-            delay: .2
-        }
     },
     closed: { y: -20, opacity: 0 },
 }
@@ -44,13 +55,13 @@ const Nav = ({ isNavOpen, setIsNavOpen }: Props) => {
             <button onClick={prevState => setIsNavOpen(false)}>close</button>
 
 
-            <ul>
+            <motion.ul variants={ulVariants}>
                 {
                     arr.map(item => (
                         <motion.li variants={liVariants} key={item}><a href="#">{item}</a></motion.li>
                     ))
                 }
-            </ul>
+            </motion.ul>
         </MenuNav>
 
     )
