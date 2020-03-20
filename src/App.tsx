@@ -53,7 +53,9 @@ function App({ title }: Props) {
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
 
-                    <Card style={{ background: 'var(--blue)' }}>
+                    <Card style={{ background: 'var(--blue)' }}
+                        whileHover={{ scale: [1.02, 0.8, 1.2] }}
+                        whileTap={{ background: 'red' }}>
                         <h3>Some card</h3>
                         <img src={blue} />
                     </Card>
