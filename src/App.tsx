@@ -52,14 +52,25 @@ function App({ title }: Props) {
                     onChange={(e) => setValue(e.target.value)} />
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
-
-                    <Card style={{ background: 'var(--blue)' }}
-                        whileHover={{ scale: [1.02, 0.8, 1.2] }}
-                        whileTap={{ background: 'red' }}>
+                    <Card 
+                        drag
+                        dragConstraints={{
+                            top: -100,
+                            left: -100,
+                            right: 100,
+                            bottom: 100,
+                        }}
+                        style={{ background: 'var(--blue)' }}>
                         <h3>Some card</h3>
                         <img src={blue} />
                     </Card>
-                    <Card style={{ background: 'var(--black)' }}>
+                    <Card 
+                        drag="x"
+                        dragConstraints={{
+                            left:0,
+                            right:0
+                        }}
+                        style={{ background: 'var(--black)' }}>
                         <h3>Some card</h3>
                         <img src={black} />
                     </Card>
