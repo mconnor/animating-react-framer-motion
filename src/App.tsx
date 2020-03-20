@@ -26,12 +26,12 @@ function App({ title }: Props) {
     return (
         <motion.div
 
-            animate={{ opacity: [0,1] }}
+            animate={{ opacity: [0, 1] }}
             transition={{ duration: .5, time: [0, 1] }}
         >
             <Header>
-                
-                <Menu onClick={()=> setIsNavOpen(true)} />
+
+                <Menu onClick={() => setIsNavOpen(true)} />
                 <Nav isNavOpen={isNavOpen} setIsNavOpen={setIsNavOpen} />
                 <h1>Header</h1>
             </Header>
@@ -39,12 +39,12 @@ function App({ title }: Props) {
             <Container>
                 <Accordian />
                 <Modal isModalToggled={isModal}
-                        closeMe={() => setModal(false)}
+                    closeMe={() => setModal(false)}
                 >
-                            <Card style={{ background: 'var(--purp)' }}>
-                                <h3>Some card</h3>
-                                <img src={purp} />
-                            </Card>
+                    <Card style={{ background: 'var(--purp)' }}>
+                        <h3>Some card</h3>
+                        <img src={purp} />
+                    </Card>
                 </Modal>
                 <h2>cool</h2>
                 <input type="range" min="-100" max="100"
@@ -52,7 +52,7 @@ function App({ title }: Props) {
                     onChange={(e) => setValue(e.target.value)} />
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
-                    
+
                     <Card style={{ background: 'var(--blue)' }}>
                         <h3>Some card</h3>
                         <img src={blue} />
