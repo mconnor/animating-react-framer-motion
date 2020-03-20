@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion , useMotionValue, useTransform } from 'framer-motion';
 import Modal from './components/Modal/Modal';
 import Accordian from './components/accordian/Accordian';
 import { Card, CardGrid, Container, Header } from './Elements';
@@ -22,6 +22,9 @@ function App({ title }: Props) {
     const [value, setValue] = useState<string>('0')
     const [isModal, setModal] = useState<boolean>(false)
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
+    
+    const x = useMotionValue(0);
+    const opacity = useTransform(x, [-200,0,200], [0,1,0])
 
     return (
         <motion.div
@@ -66,11 +69,15 @@ function App({ title }: Props) {
                     </Card>
                     <Card 
                         drag="x"
+
                         dragConstraints={{
                             left:0,
                             right:0
                         }}
-                        style={{ background: 'var(--black)' }}>
+                        style={{ 
+                            x,
+                            opacity,
+                            background: 'var(--black)' }}>
                         <h3>Some card</h3>
                         <img src={black} />
                     </Card>
