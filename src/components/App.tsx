@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
-import Modal from './components/Modal/Modal';
-import Accordian from './components/accordian/Accordian';
+import Modal from './Modal/Modal';
+import Accordian from './accordian/Accordian';
 import { Card, CardGrid, Container, Header } from './Elements';
 import './App.css';
 import Menu from './Menu';
-import blue from './blue.png';
-import purp from './purp.png';
-import black from './black.png';
-import green from './green.png';
-import Nav from './components/Nav';
-import Squares from './components/Squares';
+import blue from '../images/blue.png';
+import purp from '../images/purp.png';
+import black from '../images/black.png';
+import green from '../images/green.png';
+import Nav from './Nav';
+import Squares from './Squares';
 
 
 type Props = { title: string };
