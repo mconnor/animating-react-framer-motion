@@ -7,7 +7,7 @@ type RightOrLeft = 1 | -1 | 0;
 
 const variants = {
     enter: (direction: RightOrLeft) => ({
-        x: direction > 0 ? -1000 : 1000,
+        x: direction > 0 ? 1000 : -1000,
         opacity: 0,
     }),
     center: {
@@ -15,9 +15,8 @@ const variants = {
         opacity: 1,
     },
     exit: (direction: RightOrLeft) =>{ 
-        console.log(direction)
         return ({
-            x: direction > 0 ? 1000 : -1000,
+            x: direction > 0 ? -1000 : 1000,
             opacity: 0
         })}
 };
