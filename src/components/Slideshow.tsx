@@ -3,40 +3,47 @@ import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import COLORS from '../colors';
 import { wrap } from '@popmotion/popcorn'
 
+type RightOrLeft = 1 | -1 | 0;
+
 const variants = {
-    enter: {
-        x: 1000,
+    enter: (direction: RightOrLeft) => ({
+        x: direction > 0 ? -1000 : 1000,
         opacity: 0,
-    },
+    }),
     center: {
         x: 0,
         opacity: 1,
     },
-    exit: {
-        x: -1000,
-        opacity: 0,
-    }
-}
+    exit: (direction: RightOrLeft) =>{ 
+        console.log(direction)
+        return ({
+            x: direction > 0 ? 1000 : -1000,
+            opacity: 0
+        })}
+};
 
 const Slideshow = () => {
     const [[page, direction], setPage] = useState([0, 0]);
-    const paginate = (direction: 1 | -1) => setPage([page + direction, direction]);
+    const paginate = (direction:RightOrLeft) =>{ 
+        setPage([page + direction, direction])
+    };
     const i = wrap(0, COLORS.length, page);
 
     return (
-        <div style={{position: "relative" ,height: 400}}>
-            <AnimatePresence>
+        <div style={{ position: "relative", height: 400 }}>
+            <AnimatePresence custom={direction}>
                 <motion.div
-                    key={page}
                     style={{
                         height: 400,
                         width: "100%",
-                        background: COLORS[page],
+                        background: COLORS[i],
                         position: "absolute",
                         left: 0,
                         top: 0
 
                     }}
+                    key={page}
+                    custom={direction}
                     variants={variants}
                     initial="enter"
                     animate="center"
@@ -46,9 +53,9 @@ const Slideshow = () => {
                     dragElastic={1}
                     onDragEnd={(e: MouseEvent, { offset, velocity }: PanInfo) => {
                         if (offset.x > 400) {
-                            paginate(1)
-                        } else {
                             paginate(-1)
+                        } else  if (offset.x < -400) {
+                            paginate(1)
                         }
                     }}
                 />
