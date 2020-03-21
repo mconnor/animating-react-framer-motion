@@ -26,7 +26,7 @@ const Slideshow = () => {
     const paginate = (direction:RightOrLeft) =>{ 
         setPage([page + direction, direction])
     };
-    const i = wrap(0, COLORS.length, page);
+    const _index = wrap(0, COLORS.length, page);
 
     return (
         <div style={{ position: "relative", height: 400 }}>
@@ -35,7 +35,7 @@ const Slideshow = () => {
                     style={{
                         height: 400,
                         width: "100%",
-                        background: COLORS[i],
+                        background: COLORS[_index],
                         position: "absolute",
                         left: 0,
                         top: 0
