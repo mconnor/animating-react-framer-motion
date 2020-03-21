@@ -1,14 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
 import { shuffle } from 'lodash'
-
-const COLORS = [
-    "var(--red",
-    "var(--blue",
-    "var(--black",
-    "var(--purp",
-    "var(--green",
-];
+import COLORS from '../colors'
 
 const Squares = () => {
     const [colorList, setColorList] = useState(COLORS);

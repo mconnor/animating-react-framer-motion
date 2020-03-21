@@ -12,6 +12,7 @@ import black from '../images/black.png';
 import green from '../images/green.png';
 import Nav from './Nav';
 import Squares from './Squares';
+import Slideshow from './Slideshow'
 
 
 type Props = { title: string };
@@ -42,8 +43,9 @@ function App({ title }: Props) {
             </Header>
 
             <Container>
-                <Squares />
-                <Accordian />
+
+
+
                 <Modal isModalToggled={isModal}
                     closeMe={() => setModal(false)}
                 >
@@ -52,10 +54,19 @@ function App({ title }: Props) {
                         <img src={purp} />
                     </Card>
                 </Modal>
+
+
+                <Slideshow />
+                <Squares />
+                
                 <h2>cool</h2>
                 <input type="range" min="-100" max="100"
                     value={value}
                     onChange={(e) => setValue(e.target.value)} />
+
+                
+                <Accordian />
+
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
                     <Card
@@ -100,7 +111,7 @@ function App({ title }: Props) {
                                     <h3>Some card</h3>
                                     <img src={black} />
                                 </Card>
-                        </motion.div>
+                            </motion.div>
                         }
                     </AnimatePresence>
                     <Card style={{ background: 'var(--green)' }}>
