@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { motion , useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import Modal from './components/Modal/Modal';
 import Accordian from './components/accordian/Accordian';
 import { Card, CardGrid, Container, Header } from './Elements';
@@ -22,9 +22,10 @@ function App({ title }: Props) {
     const [value, setValue] = useState<string>('0')
     const [isModal, setModal] = useState<boolean>(false)
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
-    
+    const [isCardActive, setIsCardActive] = useState(true)
+
     const x = useMotionValue(0);
-    const opacity = useTransform(x, [-200,0,200], [0,1,0])
+    const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0])
 
     return (
         <motion.div
@@ -55,7 +56,7 @@ function App({ title }: Props) {
                     onChange={(e) => setValue(e.target.value)} />
                 <button onClick={() => setModal(!isModal)}>modal</button>
                 <CardGrid>
-                    <Card 
+                    <Card
                         drag
                         dragConstraints={{
                             top: -100,
@@ -67,20 +68,39 @@ function App({ title }: Props) {
                         <h3>Some card</h3>
                         <img src={blue} />
                     </Card>
-                    <Card 
-                        drag="x"
+                    <AnimatePresence>
+                        {isCardActive &&
+                            <motion.div
+                                exit={{ height: 0, overflow: 'hidden', opacity: 0 }}
+                                transition={{
+                                    opacity: {
+                                        duration: 0
+                                    }
+                                }}
+                            >
 
-                        dragConstraints={{
-                            left:0,
-                            right:0
-                        }}
-                        style={{ 
-                            x,
-                            opacity,
-                            background: 'var(--black)' }}>
-                        <h3>Some card</h3>
-                        <img src={black} />
-                    </Card>
+                                <Card
+                                    drag="x"
+                                    onDrag={(event, info) => {
+                                        if (Math.abs(info.point.x) > 200) {
+                                            setIsCardActive(false)
+                                        }
+                                    }}
+                                    dragConstraints={{
+                                        left: 0,
+                                        right: 0
+                                    }}
+                                    style={{
+                                        x,
+                                        opacity,
+                                        background: 'var(--black)'
+                                    }}>
+                                    <h3>Some card</h3>
+                                    <img src={black} />
+                                </Card>
+                        </motion.div>
+                        }
+                    </AnimatePresence>
                     <Card style={{ background: 'var(--green)' }}>
                         <h3>Some card</h3>
                         <img src={green} />
