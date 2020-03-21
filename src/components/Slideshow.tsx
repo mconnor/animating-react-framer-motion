@@ -30,6 +30,7 @@ const Slideshow = () => {
 
     return (
         <div style={{ position: "relative", height: 400 }}>
+            {/* dynamic varient */}
             <AnimatePresence custom={direction}>
                 <motion.div
                     style={{
