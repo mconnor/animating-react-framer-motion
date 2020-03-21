@@ -11,6 +11,7 @@ import purp from './purp.png';
 import black from './black.png';
 import green from './green.png';
 import Nav from './components/Nav';
+import Squares from './components/Squares';
 
 
 type Props = { title: string };
@@ -41,6 +42,7 @@ function App({ title }: Props) {
             </Header>
 
             <Container>
+                <Squares />
                 <Accordian />
                 <Modal isModalToggled={isModal}
                     closeMe={() => setModal(false)}
