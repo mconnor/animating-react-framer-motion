@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link, useLocation } from "react-router-dom";
 import { motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion';
 import { Container, Header } from './Elements';
 import AboutPage from './AboutPage'
@@ -19,7 +19,7 @@ type State = {
 function App({ title }: Props) {
 
     const [isNavOpen, setIsNavOpen] = useState<boolean>(false)
-
+const location = useLocation()
 
     const x = useMotionValue(0);
     const opacity = useTransform(x, [-200, 0, 200], [0, 1, 0])
@@ -38,8 +38,8 @@ function App({ title }: Props) {
 
             <Container>
                 <h2>super cool</h2>
-                <AnimatePresence>
-                    <Switch>
+                <AnimatePresence exitBeforeEnter>
+                    <Switch  location={location} key={location.pathname}>
                         <Route exact path="/" component={HomePage} />
                         <Route exact path="/about" component={AboutPage} />
                     </Switch>
