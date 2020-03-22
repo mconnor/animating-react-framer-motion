@@ -5,3 +5,9 @@
   --black: #3b2c41;
   --green: #a3ffc1;
 }
+
+ a {
+     text-decoration: none;
+     color: white;
+     font-size: 1rem;
+ }
